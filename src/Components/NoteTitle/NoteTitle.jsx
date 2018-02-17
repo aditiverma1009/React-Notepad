@@ -1,7 +1,12 @@
 import React from 'react';
 import './Note-Title.css';
 
-const NoteTitle = () => (
-  <input className="NoteTitle" />
-);
+class NoteTitle extends React.Component {
+  render() {
+    return (
+      <input className="NoteTitle" />
+    );
+  }
+}
+
 export default NoteTitle;

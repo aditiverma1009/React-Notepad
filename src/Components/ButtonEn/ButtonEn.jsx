@@ -1,10 +1,17 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import './Button-En.css';
 
-const ButtonEn = () => (
+class ButtonEn extends React.Component {
+  render() {
+    return (
+      <button className="ButtonEn">{this.props.textButtonEn}</button>
+    );
+  }
+}
 
-  <button className="ButtonEn">en</button>
-
-);
+ButtonEn.propTypes = {
+  textButtonEn: PropTypes.string.isRequired,
+};
 
 export default ButtonEn;

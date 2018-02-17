@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.css';
 
-const Header = props => (
-  <div className="Header">
-    {props.text}
-  </div>
-);
-
+class Header extends React.Component {
+  render() {
+    return (
+      <div className="Header">
+        {this.props.textHeader}
+      </div>
+    );
+  }
+}
 Header.propTypes = {
-  text: PropTypes.string.isRequired,
+  textHeader: PropTypes.string.isRequired,
 };
 export default Header;
 
