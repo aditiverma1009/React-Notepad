@@ -10,11 +10,9 @@ class App extends React.Component {
     this.state = {
       alertBool: false,
       leftChar: 10,
-      history: [{
-        valueNoteTitle: '',
-        valueNote: '',
-      }],
-      pageno: 0,
+      noteTitle: '',
+      noteContent: '',
+      history: [],
     };
   }
 
@@ -23,7 +21,6 @@ class App extends React.Component {
     // const history = this.state.history.slice();
     // const current = this.state.history.slice(history.length - 1);
     let valueNotenew = event.target.value;
-    const valueNoteTitlenew = this.state.history.valueNoteTitle;
     const totalChar = valueNotenew.length;
     let leftChar = 10 - totalChar;
     if (totalChar > 10) {
@@ -31,13 +28,8 @@ class App extends React.Component {
       valueNotenew = valueNotenew.slice(0, 10);
       alertBoolnew = true;
     }
-
-
     this.setState({
-      history: [{
-        valueNote: valueNotenew,
-        valueNoteTitle: valueNoteTitlenew,
-      }],
+      noteContent: valueNotenew,
       alertBool: alertBoolnew,
       leftChar,
     });
@@ -45,26 +37,21 @@ class App extends React.Component {
 
   onChangeNoteTitle = (event) => {
     const newvalueNoteTitle = event.target.value;
-    const newvalueNote = this.state.history.valueNote;
     // const history = this.state.history.slice();
-
     this.setState({
-      history: [{
-        valueNote: newvalueNote,
-        valueNoteTitle: newvalueNoteTitle,
-      }],
+      noteTitle: newvalueNoteTitle,
     });
   }
 
   onSaveEvent = () => {
-    const { valueNoteTitle } = this.state.history;
-    const { valueNote } = this.state.history;
+    const { noteTitle } = this.state;
+    const { noteContent } = this.state;
     const history = this.state.history.slice();
     this.setState({
       history: history.concat([
         {
-          valueNote,
-          valueNoteTitle,
+          valueNote: noteContent,
+          valueNoteTitle: noteTitle,
         }]),
     });
   }
@@ -78,13 +65,13 @@ class App extends React.Component {
           textButtonEn="en"
           textNoteHeading="Please type your note below"
           textSave="Save"
-          onChangeNote={this.onChangeNote}
-          onChangeNoteTitle={this.onChangeNoteTitle}
-          valueNoteTitle={this.state.history.valueNoteTitle}
+          onChangeNote={event => this.onChangeNote(event)}
+          onChangeNoteTitle={event => this.onChangeNoteTitle(event)}
+          valueNoteTitle={this.state.noteTitle}
           alertBool={this.state.alertBool}
           textCounter={this.state.leftChar}
-          valueNote={this.state.history.valueNote}
-          onSaveEvent={this.onSaveEvent}
+          valueNote={this.state.noteContent}
+          onSaveEvent={() => this.onSaveEvent()}
         />
         <Header textHeader="About Us" />
       </div>

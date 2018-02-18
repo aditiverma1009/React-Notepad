@@ -5,24 +5,21 @@ import NoteHeading from '../NoteHeading/NoteHeading';
 import Note from '../Note/Note';
 import './Body-Mid.css';
 
-class BodyMid extends React.Component {
-  render() {
-    return (
-      <div className="BodyMid">
-        <NoteTitle
-          onChangeNoteTitle={event => this.props.onChangeNoteTitle(event)}
-          valueNoteTitle={this.props.valueNoteTitle}
-        />
-        <NoteHeading textNoteHeading={this.props.textNoteHeading} />
-        <Note
-          onChangeNote={event => this.props.onChangeNote(event)}
-          valueNote={this.props.valueNote}
-          alertBool={this.props.alertBool}
-        />
-      </div>
-    );
-  }
-}
+const BodyMid = props => (
+  <div className="BodyMid">
+    <NoteTitle
+      onChangeNoteTitle={event => props.onChangeNoteTitle(event)}
+      valueNoteTitle={props.valueNoteTitle}
+    />
+    <NoteHeading textNoteHeading={props.textNoteHeading} />
+    <Note
+      onChangeNote={event => props.onChangeNote(event)}
+      valueNote={props.valueNote}
+      alertBool={props.alertBool}
+    />
+  </div>
+);
+
 
 BodyMid.propTypes = {
   textNoteHeading: PropTypes.string.isRequired,

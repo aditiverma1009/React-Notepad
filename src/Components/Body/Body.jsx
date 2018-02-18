@@ -5,31 +5,27 @@ import BodyMid from '../BodyMid/BodyMid';
 import BodyFooter from '../BodyFooter/BodyFooter';
 import './Body.css';
 
-class Body extends React.Component {
-  render() {
-    return (
-      <div className="Body">
-        <BodyHeader
-          textNoteTitleHeading={this.props.textNoteTitleHeading}
-          textButtonEn={this.props.textButtonEn}
-        />
-        <BodyMid
-          textNoteHeading={this.props.textNoteHeading}
-          onChangeNoteTitle={event => this.props.onChangeNoteTitle(event)}
-          valueNoteTitle={this.props.valueNoteTitle}
-          onChangeNote={event => this.props.onChangeNote(event)}
-          valueNote={this.props.valueNote}
-          alertBool={this.props.alertBool}
-        />
-        <BodyFooter
-          textSave={this.props.textSave}
-          onSaveEvent={this.props.onSaveEvent}
-          textCounter={this.props.textCounter}
-        />
-      </div>
-    );
-  }
-}
+const Body = props => (
+  <div className="Body">
+    <BodyHeader
+      textNoteTitleHeading={props.textNoteTitleHeading}
+      textButtonEn={props.textButtonEn}
+    />
+    <BodyMid
+      textNoteHeading={props.textNoteHeading}
+      onChangeNoteTitle={event => props.onChangeNoteTitle(event)}
+      valueNoteTitle={props.valueNoteTitle}
+      onChangeNote={event => props.onChangeNote(event)}
+      valueNote={props.valueNote}
+      alertBool={props.alertBool}
+    />
+    <BodyFooter
+      textSave={props.textSave}
+      onSaveEvent={event => props.onSaveEvent(event)}
+      textCounter={props.textCounter}
+    />
+  </div>
+);
 
 Body.propTypes = {
   textSave: PropTypes.string.isRequired,

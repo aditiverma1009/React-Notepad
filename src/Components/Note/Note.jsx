@@ -2,17 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Note.css';
 
-class Note extends React.Component {
-  render() {
-    return (
-      <textarea
-        onChange={event => this.props.onChangeNote(event)}
-        value={this.props.valueNote}
-        className={this.props.alertBool ? 'Red' : 'Original'}
-      />
-    );
-  }
-}
+const Note = props => (
+  <textarea
+    onChange={event => props.onChangeNote(event)}
+    value={props.valueNote}
+    className={props.alertBool ? 'Red' : 'Original'}
+  />
+);
 
 Note.propTypes = {
   onChangeNote: PropTypes.func.isRequired,
