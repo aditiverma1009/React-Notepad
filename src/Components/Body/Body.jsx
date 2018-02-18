@@ -15,12 +15,15 @@ class Body extends React.Component {
         />
         <BodyMid
           textNoteHeading={this.props.textNoteHeading}
+          onChangeNoteTitle={event => this.props.onChangeNoteTitle(event)}
+          valueNoteTitle={this.props.valueNoteTitle}
           onChangeNote={event => this.props.onChangeNote(event)}
           valueNote={this.props.valueNote}
           alertBool={this.props.alertBool}
         />
         <BodyFooter
           textSave={this.props.textSave}
+          onSaveEvent={this.props.onSaveEvent}
           textCounter={this.props.textCounter}
         />
       </div>
@@ -34,9 +37,15 @@ Body.propTypes = {
   textNoteTitleHeading: PropTypes.string.isRequired,
   textButtonEn: PropTypes.string.isRequired,
   textNoteHeading: PropTypes.string.isRequired,
+
+  onChangeNoteTitle: PropTypes.func.isRequired,
+  valueNoteTitle: PropTypes.string.isRequired,
+
   onChangeNote: PropTypes.func.isRequired,
   valueNote: PropTypes.string.isRequired,
   alertBool: PropTypes.bool.isRequired,
+
+  onSaveEvent: PropTypes.func.isRequired,
 };
 
 export default Body;

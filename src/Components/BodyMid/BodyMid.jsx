@@ -9,7 +9,10 @@ class BodyMid extends React.Component {
   render() {
     return (
       <div className="BodyMid">
-        <NoteTitle />
+        <NoteTitle
+          onChangeNoteTitle={event => this.props.onChangeNoteTitle(event)}
+          valueNoteTitle={this.props.valueNoteTitle}
+        />
         <NoteHeading textNoteHeading={this.props.textNoteHeading} />
         <Note
           onChangeNote={event => this.props.onChangeNote(event)}
@@ -23,6 +26,8 @@ class BodyMid extends React.Component {
 
 BodyMid.propTypes = {
   textNoteHeading: PropTypes.string.isRequired,
+  onChangeNoteTitle: PropTypes.func.isRequired,
+  valueNoteTitle: PropTypes.string.isRequired,
   onChangeNote: PropTypes.func.isRequired,
   valueNote: PropTypes.string.isRequired,
   alertBool: PropTypes.bool.isRequired,
