@@ -18,4 +18,5 @@ NoteTitle.propTypes = {
   onChangeNoteTitle: PropTypes.func.isRequired,
   valueNoteTitle: PropTypes.string.isRequired,
 };
+
 export default NoteTitle;

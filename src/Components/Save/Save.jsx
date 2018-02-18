@@ -16,5 +16,5 @@ export default Save;
 
 Save.propTypes = {
   textSave: PropTypes.string.isRequired,
-  inSaveEvent: PropTypes.func.isRequired,
+  onSaveEvent: PropTypes.func.isRequired,
 };

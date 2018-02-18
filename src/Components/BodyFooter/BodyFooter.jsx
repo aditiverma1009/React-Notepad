@@ -8,7 +8,7 @@ class BodyFooter extends React.Component {
   render() {
     return (
       <div className="BodyFooter">
-        <Save textSave={this.props.textSave} onSaveEvent={this.props.onSaveEvent} />
+        <Save textSave={this.props.textSave} onSaveEvent={() => this.props.onSaveEvent()} />
         <Counter textCounter={this.props.textCounter} />
       </div>
     );

@@ -21,7 +21,7 @@ const Body = props => (
     />
     <BodyFooter
       textSave={props.textSave}
-      onSaveEvent={event => props.onSaveEvent(event)}
+      onSaveEvent={() => props.onSaveEvent()}
       textCounter={props.textCounter}
     />
   </div>
