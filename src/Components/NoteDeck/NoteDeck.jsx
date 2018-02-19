@@ -1,23 +1,25 @@
 import React from 'react';
 import './Note-Deck.css';
-import NoteDeckTitle from '../NoteDeckTitle/NoteDeckTitle';
-import NoteDeckNote from '../NoteDeckNote/NoteDeckNote';
 import PropTypes from 'prop-types';
 
-class NoteDeck extends React.Component {
-  render() {
-    return (
-      <div className="NoteDeck">
-        <NoteDeckTitle noteDeckTitle={this.props.noteDeckTitle} />
-        <NoteDeckNote noteDeckNote={this.props.noteDeckNote} />
-      </div>
-    );
-  }
-}
+const NoteDeck = props => (
+  <div
+    className="NoteDeck"
+    index={props.indexSent}
+    onClick={() => {
+    props.onClickEdit(props.indexSent);
+  }}
+  >
+    <textarea className="NoteDeckTitle">{props.noteDeckT}</textarea>
+    <textarea className="NoteDeckNote">{props.noteDeckN}</textarea>
+  </div>
+);
 
 NoteDeck.propTypes = {
-  noteDeckTitle: PropTypes.string.isRequired,
-  noteDeckNote: PropTypes.string.isRequired,
+  indexSent: PropTypes.number.isRequired,
+  onClickEdit: PropTypes.func.isRequired,
+  noteDeckT: PropTypes.string.isRequired,
+  noteDeckN: PropTypes.string.isRequired,
 };
 
 export default NoteDeck;

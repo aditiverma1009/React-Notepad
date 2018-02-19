@@ -16,6 +16,8 @@ class App extends React.Component {
       noteContent: '',
       history: [],
       page: false,
+      edit: false,
+      noteId: 0,
     };
   }
 
@@ -43,6 +45,7 @@ class App extends React.Component {
       page: !(this.state.page),
       noteTitle: '',
       noteContent: '',
+      edit: false,
     });
   }
 
@@ -54,27 +57,74 @@ class App extends React.Component {
     });
   }
 
-  onSaveEvent = () => {
-    const { noteTitle } = this.state;
-    const { noteContent } = this.state;
-    const history = this.state.history.slice();
+  onClickEdit=(key) => {
     this.setState({
-      history: history.concat([
-        {
-          valueNote: noteContent,
-          valueNoteTitle: noteTitle,
-        }]),
-      page: !(this.state.page),
+      noteId: key,
+      edit: true,
+      page: !this.state.page,
     });
+    const history = this.state.history.slice();
+    history.map((step, index) => {
+      let noteContent = '';
+      let noteTitle = '';
+      if (key === step.noteid) {
+        noteContent = step.valueNote;
+        noteTitle = step.valueNoteTitle;
+      }
+      this.setState({
+        noteContent,
+        noteTitle,
+      });
+      return true;
+    });
+  }
+
+
+  onSaveEvent = () => {
+    if (this.state.edit === false) {
+      const { noteTitle } = this.state;
+      const { noteContent } = this.state;
+      const noteid = Date.now();
+      const history = this.state.history.slice();
+
+      this.setState({
+        history: history.concat([
+          {
+            valueNote: noteContent,
+            valueNoteTitle: noteTitle,
+            noteid,
+          }]),
+        page: !(this.state.page),
+      });
+    } else if (this.state.edit === true) {
+      const history = this.state.history.slice();
+      const noteIdRe = this.state.noteId;
+      history.map((step, index) => {
+        if (step.noteid === noteIdRe) {
+          history[index].valueNote = this.state.noteContent;
+          history[index].valueNoteTitle = this.state.noteTitle;
+          this.setState({
+            history: history.slice(),
+            page: !(this.state.page),
+          });
+        }
+        return true;
+      });
+    }
   }
 
 
   render() {
     // const history = this.state.history.slice();
     const noteList = this.state.history.map((step, index) => (
-      <div className="NoteEnclosure">
-        <NoteDeck noteDeckTitle={this.state.history[index].valueNoteTitle} noteDeckNote={this.state.history[index].valueNote} />
-      </div>
+      <li>
+        <NoteDeck
+          noteDeckT={this.state.history[index].valueNoteTitle}
+          noteDeckN={this.state.history[index].valueNote}
+          indexSent={this.state.history[index].noteid}
+          onClickEdit={i => this.onClickEdit(i)}
+        />
+      </li>
     ));
 
     if (this.state.page === false) {
@@ -101,7 +151,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header textHeader="Saved Notes" />
-        <div className="Body2">{noteList}</div>
+        <ol className="Body2">{noteList}</ol>
         <Footer textFooter="Create new note" onFooterClick={() => this.onFooterClick()} />
       </div>
     );
