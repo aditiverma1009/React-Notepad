@@ -64,7 +64,7 @@ class App extends React.Component {
       page: !this.state.page,
     });
     const history = this.state.history.slice();
-    history.map((step, index) => {
+    history.map((step) => {
       let noteContent = '';
       let noteTitle = '';
       if (key === step.noteid) {
